@@ -35,6 +35,9 @@ variable "ecs_cluster_name" {
   default = "szs-apne2-ecs-dev"
 }
 variable "ecs_service_name" {}
+variable "ecs_deploy_taskdef_filename" {
+  default = "taskdef.json"
+}
 variable "pipeline_chatbot_arn" {
   default = "arn:aws:chatbot::185236431346:chat-configuration/slack-channel/aws-pipeline"
 }

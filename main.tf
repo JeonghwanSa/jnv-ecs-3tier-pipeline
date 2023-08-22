@@ -79,6 +79,19 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
         Resource = "*"
       },
       {
+        "Effect" : "Allow",
+        "Action" : [
+          "ecs:DescribeServices",
+          "ecs:DescribeTaskDefinition",
+          "ecs:DescribeTasks",
+          "ecs:ListTasks",
+          "ecs:RegisterTaskDefinition",
+          "ecs:TagResource",
+          "ecs:UpdateService"
+        ],
+        "Resource" : "arn:aws:ecs:ap-northeast-2:${local.account_id}:service/${var.ecs_cluster_name}/${var.ecs_service_name}"
+      },
+      {
         Effect = "Allow",
         Action = [
           "codestar-connections:UseConnection"
@@ -154,7 +167,7 @@ resource "aws_codepipeline" "jnv-ecs-3tier-pipeline" {
       category = "Deploy"
       configuration = {
         ClusterName = var.ecs_cluster_name
-        FileName    = "taskdef.json"
+        FileName    = var.ecs_deploy_taskdef_filename
         ServiceName = var.ecs_service_name
       }
       input_artifacts  = ["BuildArtifact"]
