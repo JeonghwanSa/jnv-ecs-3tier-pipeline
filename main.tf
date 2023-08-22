@@ -81,15 +81,18 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
       {
         "Effect" : "Allow",
         "Action" : [
-          "ecs:DescribeServices",
-          "ecs:DescribeTaskDefinition",
-          "ecs:DescribeTasks",
-          "ecs:ListTasks",
-          "ecs:RegisterTaskDefinition",
-          "ecs:TagResource",
-          "ecs:UpdateService"
+          "ecr:DescribeImages"
         ],
-        "Resource" : "arn:aws:ecs:ap-northeast-2:${local.account_id}:service/${var.ecs_cluster_name}/${var.ecs_service_name}"
+        "Resource" : "*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "ecs:*"
+        ],
+        "Resource" : [
+          "*"
+        ]
       },
       {
         "Effect" : "Allow",
