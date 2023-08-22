@@ -239,7 +239,8 @@ resource "aws_iam_role_policy" "codebuild_policy" {
       {
         Effect = "Allow",
         Resource = [
-          "${var.secret_arn}"
+          "${var.secret_arn}",
+          "arn:aws:secretsmanager:ap-northeast-2:${local.account_id}:secret:/CodeBuild/nexus/reader-*"
         ],
         Action = [
           "secretsmanager:GetSecretValue"
