@@ -92,6 +92,13 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
         "Resource" : "arn:aws:ecs:ap-northeast-2:${local.account_id}:service/${var.ecs_cluster_name}/${var.ecs_service_name}"
       },
       {
+        "Effect" : "Allow",
+        "Action" : "iam:PassRole",
+        "Resource" : [
+          "*"
+        ]
+      },
+      {
         Effect = "Allow",
         Action = [
           "codestar-connections:UseConnection"
