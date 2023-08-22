@@ -235,6 +235,15 @@ resource "aws_iam_role_policy" "codebuild_policy" {
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
+      },
+      {
+        Effect = "Allow",
+        Resource = [
+          "${var.secret_arn}"
+        ],
+        Action = [
+          "secretsmanager:GetSecretValue"
+        ]
       }
     ]
   })

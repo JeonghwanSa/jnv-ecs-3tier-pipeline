@@ -38,5 +38,6 @@ variable "ecs_service_name" {}
 variable "pipeline_chatbot_arn" {
   default = "arn:aws:chatbot::185236431346:chat-configuration/slack-channel/aws-pipeline"
 }
+variable "secret_arn" {}
 variable "github_connection_arn" {}
 variable "github_fullrepository_id" {}
