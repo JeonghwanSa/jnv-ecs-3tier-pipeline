@@ -171,25 +171,57 @@ resource "aws_codepipeline" "jnv-ecs-3tier-pipeline" {
       }
     }
   }
-  stage {
-    name = "Deploy"
-    action {
-      category = "Deploy"
-      configuration = {
-        ClusterName = var.ecs_cluster_name
-        FileName    = var.ecs_deploy_taskdef_filename
-        ServiceName = var.ecs_service_name
+  dynamic "stage" {
+    for_each = var.ecs_is_bluegreen == false ? [1] : []
+
+    content {
+      name = "Deploy"
+      action {
+        category = "Deploy"
+        configuration = {
+          ClusterName = var.ecs_cluster_name
+          FileName    = var.ecs_deploy_taskdef_filename
+          ServiceName = var.ecs_service_name
+        }
+        input_artifacts  = ["BuildArtifact"]
+        name             = "Deploy"
+        namespace        = "DeployVariables"
+        output_artifacts = []
+        owner            = "AWS"
+        provider         = "ECS"
+        region           = "ap-northeast-2"
+        role_arn         = null
+        run_order        = 1
+        version          = "1"
       }
-      input_artifacts  = ["BuildArtifact"]
-      name             = "Deploy"
-      namespace        = "DeployVariables"
-      output_artifacts = []
-      owner            = "AWS"
-      provider         = "ECS"
-      region           = "ap-northeast-2"
-      role_arn         = null
-      run_order        = 1
-      version          = "1"
+    }
+  }
+  dynamic "stage" {
+    for_each = var.ecs_is_bluegreen == true ? [1] : []
+
+    content {
+      name = "Deploy"
+      action {
+        category = "Deploy"
+        configuration = {
+          AppSpecTemplateArtifact        = "BuildArtifact"
+          AppSpecTemplatePath            = "appspec.yml"
+          ApplicationName                = var.codedeploy_app_name
+          DeploymentGroupName            = var.codedeploy_deploymentgroup_name
+          TaskDefinitionTemplateArtifact = "BuildArtifact"
+          TaskDefinitionTemplatePath     = var.ecs_deploy_taskdef_filename
+        }
+        input_artifacts  = ["BuildArtifact"]
+        name             = "Deploy"
+        namespace        = "DeployVariables"
+        output_artifacts = []
+        owner            = "AWS"
+        provider         = "CodeDeployToECS"
+        region           = "ap-northeast-2"
+        role_arn         = null
+        run_order        = 1
+        version          = "1"
+      }
     }
   }
 }

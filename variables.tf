@@ -38,6 +38,14 @@ variable "ecs_service_name" {}
 variable "ecs_deploy_taskdef_filename" {
   default = "taskdef.json"
 }
+variable "ecs_is_bluegreen" {
+  type    = bool
+  default = false
+}
+variable "codedeploy_app_name" {
+}
+variable "codedeploy_deploymentgroup_name" {
+}
 variable "pipeline_chatbot_arn" {
   default = "arn:aws:chatbot::185236431346:chat-configuration/slack-channel/aws-pipeline"
 }
