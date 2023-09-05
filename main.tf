@@ -358,10 +358,13 @@ resource "aws_codebuild_project" "codebuild_project" {
     buildspec           = var.bulidspec_name
   }
 
-  vpc_config {
-    security_group_ids = var.codebuild_vpc_sg
-    subnets            = var.codebuild_vpc_subnets
-    vpc_id             = var.codebuild_vpc_id
+  dynamic "vpc_config" {
+    for_each = var.codebuild_vpc_id != "" ? [1] : []
+    content {
+      security_group_ids = var.codebuild_vpc_sg
+      subnets            = var.codebuild_vpc_subnets
+      vpc_id             = var.codebuild_vpc_id
+    }
   }
 
   lifecycle {
