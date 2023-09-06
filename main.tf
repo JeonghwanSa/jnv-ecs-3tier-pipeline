@@ -77,6 +77,7 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "codebuild:StartBuild",
           "codedeploy:GetApplication",
           "codedeploy:GetApplicationRevision",
+          "codedeploy:RegisterApplicationRevision",
           "codedeploy:GetDeploymentGroup",
           "codedeploy:GetDeploymentConfig",
           "codedeploy:CreateDeployment",
