@@ -27,6 +27,9 @@ variable "codebuild_vpc_subnets" {
 variable "codebuild_vpc_sg" {
   default = ["sg-083c01a8afec0d4f4"]
 }
+variable "codebuild_environment_variables" {
+  default = []
+}
 variable "need_approval" {
   type    = bool
   default = false

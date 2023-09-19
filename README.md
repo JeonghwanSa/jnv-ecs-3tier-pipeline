@@ -14,6 +14,13 @@ module "jnv_ecs_3tier_pipeline" {
   codebuild_vpc_id         = "vpc-1234abcd5678efghi"
   codebuild_vpc_subnets    = ["subnet-1234abcd5678efghi", "subnet-1234abcd5678efghi"]
   codebuild_vpc_sg         = ["sg-1234abcd5678efghi"]
+  codebuild_environment_variables = [
+    {
+      "type" : "PLAINTEXT",
+      "name" : "example",
+      "value" : "example"
+    }
+  ]
   ecs_cluster_name         = "cluster_name"
   ecs_service_name         = "service_name"
   github_connection_arn    = "arn:aws:codestar-connections:ap-northeast-2:111122223333:connection/1234abcd-5678-efgh-9000-ijkl0000mnop"
@@ -60,6 +67,7 @@ No modules.
 | <a name="input_build_compute_size"></a> [build\_compute\_size](#input\_build\_compute\_size) | n/a | `string` | `"BUILD_GENERAL1_LARGE"` | no |
 | <a name="input_build_image"></a> [build\_image](#input\_build\_image) | n/a | `string` | `"aws/codebuild/amazonlinux2-x86_64-standard:5.0"` | no |
 | <a name="input_bulidspec_name"></a> [bulidspec\_name](#input\_bulidspec\_name) | n/a | `string` | `"buildspec.yaml"` | no |
+| <a name="input_codebuild_environment_variables"></a> [codebuild\_environment\_variables](#input\_codebuild\_environment\_variables) | n/a | `any` | n/a | yes |
 | <a name="input_codebuild_vpc_id"></a> [codebuild\_vpc\_id](#input\_codebuild\_vpc\_id) | n/a | `string` | `"vpc-0cd28aa2e0e8c8cf7"` | no |
 | <a name="input_codebuild_vpc_sg"></a> [codebuild\_vpc\_sg](#input\_codebuild\_vpc\_sg) | n/a | `list` | <pre>[<br>  "sg-083c01a8afec0d4f4"<br>]</pre> | no |
 | <a name="input_codebuild_vpc_subnets"></a> [codebuild\_vpc\_subnets](#input\_codebuild\_vpc\_subnets) | n/a | `list` | <pre>[<br>  "subnet-041191089c7344807",<br>  "subnet-0b188546bc60a1e37"<br>]</pre> | no |

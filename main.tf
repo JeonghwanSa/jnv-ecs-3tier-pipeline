@@ -339,6 +339,15 @@ resource "aws_codebuild_project" "codebuild_project" {
       name  = "CODEPIPELINE_BUCKET"
       value = aws_s3_bucket.codepipeline_bucket.id
     }
+
+    dynamic "environment_variable" {
+      for_each = var.codebuild_environment_variables
+      content {
+        type  = environment_variable.value["type"]
+        name  = environment_variable.value["name"]
+        value = environment_variable.value["value"]
+      }
+    }
   }
 
   logs_config {
@@ -369,11 +378,11 @@ resource "aws_codebuild_project" "codebuild_project" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [
-      environment[0].environment_variable
-    ]
-  }
+  # lifecycle {
+  #   ignore_changes = [
+  #     environment[0].environment_variable
+  #   ]
+  # }
 }
 
 resource "aws_codestarnotifications_notification_rule" "codepipeline_notification" {
