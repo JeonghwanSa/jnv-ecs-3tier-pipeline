@@ -15,7 +15,7 @@ variable "build_compute_size" {
 variable "build_image" {
   default = "aws/codebuild/amazonlinux2-x86_64-standard:5.0"
 }
-variable "bulidspec_name" {
+variable "buildspec_name" {
   default = "buildspec.yaml"
 }
 variable "codebuild_vpc_id" {

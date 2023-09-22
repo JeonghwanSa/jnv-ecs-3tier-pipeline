@@ -366,7 +366,7 @@ resource "aws_codebuild_project" "codebuild_project" {
     insecure_ssl        = false
     report_build_status = false
     type                = "CODEPIPELINE"
-    buildspec           = var.bulidspec_name
+    buildspec           = var.buildspec_name
   }
 
   dynamic "vpc_config" {

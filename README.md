@@ -10,7 +10,7 @@ module "jnv_ecs_3tier_pipeline" {
   application_name         = "jobis-example"
   pipeline_branch          = "dev"
   build_image              = "1234456789000.dkr.ecr.ap-northeast-2.amazonaws.com/buildimage:latest"
-  bulidspec_name           = "buildspec.yml"
+  buildspec_name           = "buildspec.yml"
   codebuild_vpc_id         = "vpc-1234abcd5678efghi"
   codebuild_vpc_subnets    = ["subnet-1234abcd5678efghi", "subnet-1234abcd5678efghi"]
   codebuild_vpc_sg         = ["sg-1234abcd5678efghi"]
@@ -66,7 +66,7 @@ No modules.
 | <a name="input_application_name"></a> [application\_name](#input\_application\_name) | n/a | `any` | n/a | yes |
 | <a name="input_build_compute_size"></a> [build\_compute\_size](#input\_build\_compute\_size) | n/a | `string` | `"BUILD_GENERAL1_LARGE"` | no |
 | <a name="input_build_image"></a> [build\_image](#input\_build\_image) | n/a | `string` | `"aws/codebuild/amazonlinux2-x86_64-standard:5.0"` | no |
-| <a name="input_bulidspec_name"></a> [bulidspec\_name](#input\_bulidspec\_name) | n/a | `string` | `"buildspec.yaml"` | no |
+| <a name="input_buildspec_name"></a> [bulidspec\_name](#input\_bulidspec\_name) | n/a | `string` | `"buildspec.yaml"` | no |
 | <a name="input_codebuild_environment_variables"></a> [codebuild\_environment\_variables](#input\_codebuild\_environment\_variables) | n/a | `any` | n/a | yes |
 | <a name="input_codebuild_vpc_id"></a> [codebuild\_vpc\_id](#input\_codebuild\_vpc\_id) | n/a | `string` | `"vpc-0cd28aa2e0e8c8cf7"` | no |
 | <a name="input_codebuild_vpc_sg"></a> [codebuild\_vpc\_sg](#input\_codebuild\_vpc\_sg) | n/a | `list` | <pre>[<br>  "sg-083c01a8afec0d4f4"<br>]</pre> | no |
