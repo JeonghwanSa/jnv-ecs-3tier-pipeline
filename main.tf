@@ -309,6 +309,16 @@ resource "aws_iam_role_policy" "codebuild_policy" {
         Action = [
           "secretsmanager:GetSecretValue"
         ]
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "ssm:GetParametersByPath",
+          "ssm:GetParameters"
+        ],
+        "Resource" : [
+          "arn:aws:ssm:ap-northeast-2:${local.account_id}:parameter/CodeBuild/*",
+        ]
       }
     ]
   })
