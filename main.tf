@@ -15,7 +15,7 @@ resource "aws_s3_bucket_ownership_controls" "bucketownership" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "publcaccess_block" {
+resource "aws_s3_bucket_public_access_block" "publicaccess_block" {
   bucket = aws_s3_bucket.codepipeline_bucket.id
 
   block_public_acls       = true
