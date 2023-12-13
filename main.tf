@@ -341,7 +341,7 @@ resource "aws_codebuild_project" "codebuild_project" {
   environment {
     compute_type                = var.build_compute_size
     image                       = var.build_image
-    image_pull_credentials_type = "SERVICE_ROLE"
+    image_pull_credentials_type = var.build_image_credential_type
     privileged_mode             = false
     type                        = "LINUX_CONTAINER"
 

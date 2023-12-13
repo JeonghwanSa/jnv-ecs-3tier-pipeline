@@ -15,6 +15,9 @@ variable "build_compute_size" {
 variable "build_image" {
   default = "aws/codebuild/amazonlinux2-x86_64-standard:5.0"
 }
+variable "build_image_credential_type" {
+  default = "SERVICE_ROLE"
+}
 variable "buildspec_name" {
   default = "buildspec.yaml"
 }
