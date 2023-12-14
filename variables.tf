@@ -18,6 +18,10 @@ variable "build_image" {
 variable "build_image_credential_type" {
   default = "SERVICE_ROLE"
 }
+variable "build_privileged_mode" {
+  type    = bool
+  default = false
+}
 variable "buildspec_name" {
   default = "buildspec.yaml"
 }
